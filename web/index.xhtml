@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>async jsf app</title>
+        <h:outputScript library="js" name="resendscript.js" />
+    </h:head>
+    <h:body> 
+            
+        async jsf app
+        <h:form id="jsfappform">
+            say something: 
+            <h:inputText id="newmsg" value="#{game.newMessage}" />
+            <h:commandButton id="sendbut" value="say" action="#{game.say}" />
+            <br /><br />
+            Messages:
+            <br /><br />
+            <h:outputText id="msgs" value="#{game.msgs}" escape="false">
+                <h:outputScript>resendRequest()</h:outputScript>
+            </h:outputText>            
+            <h:commandButton id="reloadbut" value="" action="#{game.resend}" style="visibility: hidden">
+                <f:ajax execute="@this" render="msgs" onevent="handleAjax" onerror="handleError" /> 
+            </h:commandButton>
+            <h:outputScript>resendRequest()</h:outputScript>
+        </h:form>
+    </h:body>
+</html>
+
