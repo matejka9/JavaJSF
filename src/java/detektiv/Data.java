@@ -49,18 +49,18 @@ public class Data {
             if (isAuthorTurn()){
                 if (turn != null) {
                     if (msg.equals("Yes") || msg.equals("No") || msg.equals("No, Comment")) {
-                        messages.add(msg);
+                        messages.add("Answer: " + msg);
                         changeTurn();
                     } else if (msg.equals("That's it")) {
-                        messages.add(msg);
+                        messages.add("Answer: " + msg);
                         running = false;
                     }
                 } else {
-                    messages.add(msg);
+                    messages.add("Story: " + msg);
                     changeTurn();
                 }
             } else {
-                messages.add(msg);
+                messages.add("Question: " + msg);
                 changeTurn();
             }
         }
